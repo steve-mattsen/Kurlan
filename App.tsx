@@ -1,5 +1,5 @@
 import React, { Component }from 'react';
-import { StyleSheet, Text, TextInput, View,ScrollView, Picker, Image, FlatList } from 'react-native';
+import { StyleSheet, Text, TextInput, View,ScrollView, Picker, Image, FlatList, StatusBar,ImageBackground } from 'react-native';
 
 var personas = [
 	{
@@ -28,7 +28,7 @@ var messages = [
 	{
 		id: 0,
 		persona: 0,
-		message: "How's everyone doing?",
+		message: "How are we doing?",
 	},{
 		id: 1,
 		persona: 1,
@@ -49,6 +49,7 @@ var selectedPersona = 0;
 export default function App() {
   return (
     <View style={styles.container}>
+		<StatusBar hidden={false} backgroundColor="#f00" translucent={false}/>
 		<SideBar />
 		<TopBar />
 		<MessageContainer />
@@ -70,11 +71,11 @@ class TopBar extends Component {
 	render() {
 		return (
 			<View style={styles.topBar}>
-				<Image style={[styIcn, styles.menuButton]} source={require('./assets/hamburger.png')} />
+				<ImageBackground style={styIcn} imageStyle={styIcnImage} source={require('./assets/hamburger.png')}/>
 				<Text style={styles.channelTitle}>#general</Text>
-				<Image style={[styIcn, styles.starButton]} source={require('./assets/star.png')} />
-				<Image style={[styIcn, styles.searchButton]} source={require('./assets/search.png')} />
-				<Image style={[styIcn, styles.actionButton]} source={require('./assets/actionButton.png')} />
+				<ImageBackground style={[styIcn, styIcnMid]} imageStyle={styIcnImage} source={require('./assets/star.png')}/>
+				<ImageBackground style={[styIcn, styIcnMid]} imageStyle={styIcnImage} source={require('./assets/search.png')}/>
+				<ImageBackground style={styIcn} imageStyle={styIcnImage} source={require('./assets/actionButton.png')}/>
 			</View>
 		)
 	}
@@ -85,7 +86,7 @@ class MessageContainer extends Component {
 		return (
 			<FlatList style={styles.messageContainer} 
 				data={messages}
-				renderItem={({item}) => <Message user={item.persona}>{item.message}</Message>}
+				renderItem={({item}) => <Message persona={item.persona}>{item.message}</Message>}
 				/>
 		);
 	}
@@ -93,12 +94,12 @@ class MessageContainer extends Component {
 
 class Message extends Component {
 	render() {
-		this.p = personas[this.user];
+		let p = personas[this.props.persona];
 		return (
 			<View style={styles.message}>
-				<Image source={{uri: personas[this.props.user].icon }} style={styles.messageIcon} />
+				<Image source={{uri: p.icon }} style={styles.messageIcon} />
 				<View style={styles.messageTextContainer}>
-					<Text style={styles.messageUserName}>{personas[this.props.user].name}</Text>
+					<Text style={styles.messageUserName}>{p.name}</Text>
 					<Text style={styles.messageText}>{this.props.children}</Text>
 				</View>
 			</View>
@@ -112,7 +113,7 @@ class BottomBar extends Component {
 			<View style={styles.bottomBar}>
 				<PersonaSelect />
 				<TextInput style={styles.chatBox} placeholder="Type message here...."/>
-				<Image style={[styIcn, styles.upload]} source={require('./assets/upload.png')} />
+				<ImageBackground style={styIcn} imageStyle={styIcnImage} source={require('./assets/upload.png')}/>
 			</View>
 		);
 	}
@@ -133,7 +134,7 @@ class PersonaSelect extends Component {
 
 const styConst = {
 	fontSize: 16,
-	padding: 10,
+	padding: 5,
 	borderRadius: 5,
 }
 
@@ -146,12 +147,23 @@ const styClr = {
 };
 
 const styIcn = {
-	width: 30,
-	height: 30,
+	width: 40,
+	height: 40,
 	backgroundColor: styClr.lightMid,
 	borderRadius: styConst.borderRadius,
-	borderWidth: 5,
+	borderWidth: 0,
 	borderColor: styClr.lightMid,
+};
+
+const styIcnMid = {
+	marginLeft: styConst.padding,
+};
+
+const styIcnImage = {
+	width: styIcn.width - styConst.padding * 2,
+	height: styIcn.height - styConst.padding * 2,
+	marginLeft: styConst.padding,
+	marginTop: styConst.padding,
 };
 
 const styles = StyleSheet.create({
@@ -162,7 +174,6 @@ const styles = StyleSheet.create({
 	sideBar: {
 		display: 'none',
 		flex: 1,
-		//position: 'absolute',
 		top: 0,
 		left: -200,
 		bottom: 0,
@@ -173,13 +184,15 @@ const styles = StyleSheet.create({
 	},
 	topBar: {
 		backgroundColor: styClr.mid,
-		flexDirection: 'row',
+		flexDirection: 'row-reverse',
 		padding: styConst.padding,
+		paddingTop: styConst.padding + StatusBar.currentHeight,
 	},
 	channelTitle: {
 		flex: 1,
 		fontSize: styConst.fontSize,
-		padding: styConst.padding,
+		paddingHorizontal: styConst.padding,
+		paddingTop: styConst.padding,
 		fontWeight: 'bold',
 		color: styClr.light,
 	},
@@ -199,7 +212,7 @@ const styles = StyleSheet.create({
 	message: {
 		flexDirection: 'row',
 		paddingBottom: styConst.padding,
-		paddingLeft: styConst.padding,
+		paddingHorizontal: styConst.padding,
 	},
 	messageIcon: {
 		width: styIcn.width,

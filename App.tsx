@@ -5,21 +5,26 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 var personas = [
 	{
 		id: 0,
+		name: 'Assistant',
+		icon: 'https://giantbomb1.cbsistatic.com/uploads/scale_small/9/96986/2147981-edi_robot_body_me3.png',
+		
+	},{
+		id: 1,
 		name: 'Self',
 		icon: 'https://cdn.discordapp.com/avatars/217086119156776960/0d7ca52f55294538231d391a7ab93095.png?size=64',
 	},
 	{
-		id: 1,
+		id: 2,
 		name: 'Eeyore',
 		icon: 'https://laurensheil.files.wordpress.com/2014/08/eeyore.jpg',
 	},
 	{
-		id: 2,
+		id: 3,
 		name: 'Chicken with no head',
 		icon: 'http://rs1329.pbsrc.com/albums/w558/PRev1BV/Chook_zpsljk9l2pr.jpg~c200',
 	},
 	{
-		id: 3,
+		id: 4,
 		name: 'Inner Child',
 		icon: 'https://cdn.tinybuddha.com/wp-content/uploads/2016/08/Inner-child.png',
 	}
@@ -29,20 +34,24 @@ var messages = [
 	{
 		id: 0,
 		persona: 0,
-		message: "How are we doing?",
+		message: "How are you doing?",
 	},{
 		id: 1,
 		persona: 1,
-		message: "I'm depressed.",
+		message: "I'm depressed and stressed.",
 	},{
 		id: 2,
-		persona: 2,
-		message: "There's so much we have to do and we're not doing any of it.",
+		persona: 3,
+		message: "There's so much I have to do and I'm not doing any of it.",
 	},{
 		id: 3,
-		persona: 3,
-		message: "Let's make videos games all day forever!",
-	},
+		persona: 4,
+		message: "I just want to make video games all day and not do my responsibilities.",
+	},{
+		id: 4,
+		persona: 2,
+		message: "There's so much to do that I just break down and don't do any of it.",
+	}
 ];
 
 var selectedPersona = 0;
@@ -97,12 +106,16 @@ class MessageContainer extends Component {
 class Message extends Component {
 	render() {
 		let p = personas[this.props.persona];
+		var styleMix = [];
+		if (p.id == 0) {
+			styleMix.push(styles.messageAssistant);
+		}
 		return (
-			<View style={styles.message}>
-				<Image source={{uri: p.icon }} style={styles.messageIcon} />
-				<View style={styles.messageTextContainer}>
-					<Text style={styles.messageUserName}>{p.name}</Text>
-					<Text style={styles.messageText}>{this.props.children}</Text>
+			<View style={[styles.message, styleMix]}>
+				<Image source={{uri: p.icon }} style={[styles.messageIcon, styleMix]} />
+				<View style={[styles.messageTextContainer, styleMix]}>
+					<Text style={[styles.messageUserName, styleMix]}>{p.name}</Text>
+					<Text style={[styles.messageText, styleMix]}>{this.props.children}</Text>
 				</View>
 			</View>
 		);
@@ -242,6 +255,10 @@ const styles = StyleSheet.create({
 		marginTop: styConst.padding * -0.4,
 		paddingBottom: styConst.padding,
 		flex: 1,
+	},
+	messageAssistant: {
+		fontStyle: 'italic',
+		fontWeight: '200',
 	},
 	bottomBar: {
 		flexDirection: 'row',

@@ -50,7 +50,7 @@ var selectedPersona = 0;
 export default function App() {
   return (
     <View style={styles.container}>
-		<StatusBar hidden={false} backgroundColor="#f00" translucent={false}/>
+		<StatusBar hidden={false} backgroundColor="#f00" translucent={true}/>
 		<SideBar />
 		<TopBar />
 		<MessageContainer />

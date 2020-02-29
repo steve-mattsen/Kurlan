@@ -1,5 +1,5 @@
-import React, { Component }from 'react';
-import { StyleSheet, Text, TextInput, View,ScrollView, Picker, Image, FlatList, StatusBar,ImageBackground } from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, Text, TextInput, View,ScrollView, Picker, Image, FlatList, StatusBar,ImageBackground,TouchableHighlight } from 'react-native';
 
 var personas = [
 	{
@@ -122,9 +122,11 @@ class BottomBar extends Component {
 class PersonaSelect extends Component {
 	render() {
 		return (
-			<Image style={styles.selectedPersonaIcon}
-				source={{uri: personas[selectedPersona].icon}}
-				/>
+			<TouchableHighlight onPress={this.addMessage} >
+				<Image style={styles.selectedPersonaIcon}
+					source={{uri: personas[selectedPersona].icon}}
+					/>
+			</TouchableHighlight>
 		);
 	}
 	//<View style={styles.selectedPersona}>
@@ -207,7 +209,6 @@ const styles = StyleSheet.create({
 		flex: 5,
 		backgroundColor: styClr.darkMid,
 		flexDirection: 'column-reverse',
-		color: styClr.light,
 	},
 	message: {
 		flexDirection: 'row',

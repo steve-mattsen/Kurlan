@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View,ScrollView, Picker, Image, FlatList, StatusBar,ImageBackground,TouchableHighlight } from 'react-native';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 var personas = [
 	{
@@ -54,6 +55,7 @@ export default function App() {
 		<TopBar />
 		<MessageContainer />
 		<BottomBar />
+		<KeyboardSpacer />
     </View>
   );
 }

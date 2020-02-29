@@ -275,6 +275,7 @@ const styles = StyleSheet.create({
 		paddingBottom: 0,
 		paddingTop: 0,
 		fontSize: styConst.fontSize,
+		color: "white",
 	},
 	upload: {
 	},

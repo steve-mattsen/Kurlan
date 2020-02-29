@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TextInput, View,ScrollView, Picker, Image, FlatList, StatusBar,ImageBackground,TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, TextInput, View,ScrollView, Picker, Image, FlatList, StatusBar,ImageBackground,TouchableHighlight, Platform} from 'react-native';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 var personas = [
@@ -140,6 +140,7 @@ const styConst = {
 	fontSize: 16,
 	padding: 5,
 	borderRadius: 5,
+	statusBarHeight: Platform.OS === 'ios' ? 20 : StatusBar.currentHeight,
 }
 
 const styClr = {
@@ -190,7 +191,7 @@ const styles = StyleSheet.create({
 		backgroundColor: styClr.mid,
 		flexDirection: 'row-reverse',
 		padding: styConst.padding,
-		paddingTop: styConst.padding + StatusBar.currentHeight,
+		paddingTop: styConst.padding + styConst.statusBarHeight,
 	},
 	channelTitle: {
 		flex: 1,

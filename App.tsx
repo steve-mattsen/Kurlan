@@ -54,7 +54,7 @@ var messages = [
 	}
 ];
 
-var selectedPersona = 0;
+var selectedPersona = 1;
 
 export default function App() {
   return (

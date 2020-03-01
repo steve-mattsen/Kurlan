@@ -1,33 +1,34 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View,ScrollView, Picker, Image, FlatList, StatusBar,ImageBackground,TouchableHighlight, Platform} from 'react-native';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
+import {createStore} from 'redux';
 
 var personas = [
 	{
 		id: 0,
 		name: 'Assistant',
-		icon: 'https://giantbomb1.cbsistatic.com/uploads/scale_small/9/96986/2147981-edi_robot_body_me3.png',
+		icon: require('./assets/personas/assistant.png'),
 		
 	},{
 		id: 1,
 		name: 'Guy',
-		icon: 'https://static.tvtropes.org/pmwiki/pub/images/AverageMan1.jpg',
+		icon: require('./assets/personas/guy.png'),
 	},{
 		id: 2,
-		name: 'Eeyore',
-		icon: 'https://laurensheil.files.wordpress.com/2014/08/eeyore.jpg',
+		name: 'Sad Donkey',
+		icon: require('./assets/personas/sadDonkey.png'),
 	},{
 		id: 3,
 		name: 'Chicken with no head',
-		icon: 'http://rs1329.pbsrc.com/albums/w558/PRev1BV/Chook_zpsljk9l2pr.jpg~c200',
+		icon: require('./assets/personas/chicken.png'),
 	},{
 		id: 4,
 		name: 'Inner Child',
-		icon: 'https://cdn.tinybuddha.com/wp-content/uploads/2016/08/Inner-child.png',
+		icon: require('./assets/personas/innerChild.png'),
 	},{
 		id: 5,
 		name: 'Inner Parent',
-		icon: 'https://findicons.com/files/icons/1024/dress_it_profession/128/dad_avatar.png',
+		icon: require('./assets/personas/father.png'),
 	}
 ];
 

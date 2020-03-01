@@ -33,31 +33,31 @@ var personas = [
 
 var messages = [
 	{
-		id: 0,
+		key: "0",
 		persona: 0,
 		message: "Good morning. How are you doing today?",
 	},{
-		id: 1,
+		key: "1",
 		persona: 1,
 		message: "I'm depressed and stressed.",
 	},{
-		id:0,
+		key: "2",
 		persona: 0,
 		message: "Why's that?",
 	},{
-		id: 2,
+		key: "3",
 		persona: 3,
 		message: "I have to do like 10 major things today.",
 	},{
-		id: 3,
+		key: "4",
 		persona: 2,
 		message: "There's so much to do that I just break down and don't do anything.",
 	},{
-		id: 4,
+		key: "5",
 		persona: 4,
 		message: "I just want to have fun all day and not do work.",
 	},{
-		id: 5,
+		key: "6",
 		persona: 5,
 		message: "Maybe I can just take out the trash and see how I feel.",
 	}

@@ -10,23 +10,24 @@ var personas = [
 		
 	},{
 		id: 1,
-		name: 'Self',
-		icon: 'https://cdn.discordapp.com/avatars/217086119156776960/0d7ca52f55294538231d391a7ab93095.png?size=64',
-	},
-	{
+		name: 'Guy',
+		icon: 'https://static.tvtropes.org/pmwiki/pub/images/AverageMan1.jpg',
+	},{
 		id: 2,
 		name: 'Eeyore',
 		icon: 'https://laurensheil.files.wordpress.com/2014/08/eeyore.jpg',
-	},
-	{
+	},{
 		id: 3,
 		name: 'Chicken with no head',
 		icon: 'http://rs1329.pbsrc.com/albums/w558/PRev1BV/Chook_zpsljk9l2pr.jpg~c200',
-	},
-	{
+	},{
 		id: 4,
 		name: 'Inner Child',
 		icon: 'https://cdn.tinybuddha.com/wp-content/uploads/2016/08/Inner-child.png',
+	},{
+		id: 5,
+		name: 'Inner Parent',
+		icon: 'https://findicons.com/files/icons/1024/dress_it_profession/128/dad_avatar.png',
 	}
 ];
 
@@ -34,23 +35,31 @@ var messages = [
 	{
 		id: 0,
 		persona: 0,
-		message: "How are you doing?",
+		message: "Good morning. How are you doing today?",
 	},{
 		id: 1,
 		persona: 1,
 		message: "I'm depressed and stressed.",
 	},{
+		id:0,
+		persona: 0,
+		message: "Why's that?",
+	},{
 		id: 2,
 		persona: 3,
-		message: "There's so much I have to do and I'm not doing any of it.",
+		message: "I have to do like 10 major things today.",
 	},{
 		id: 3,
-		persona: 4,
-		message: "I just want to make video games all day and not do my responsibilities.",
+		persona: 2,
+		message: "There's so much to do that I just break down and don't do anything.",
 	},{
 		id: 4,
-		persona: 2,
-		message: "There's so much to do that I just break down and don't do any of it.",
+		persona: 4,
+		message: "I just want to have fun all day and not do work.",
+	},{
+		id: 5,
+		persona: 5,
+		message: "Maybe I can just take out the trash and see how I feel.",
 	}
 ];
 
@@ -222,19 +231,18 @@ const styles = StyleSheet.create({
 		marginRight: styConst.padding,
 	},
 	messageContainer: {
-		flex: 5,
 		backgroundColor: styClr.darkMid,
 		flexDirection: 'column-reverse',
 	},
 	message: {
 		flexDirection: 'row',
-		paddingBottom: styConst.padding,
-		paddingHorizontal: styConst.padding,
+		padding: styConst.padding,
 	},
 	messageIcon: {
 		width: styIcn.width,
 		height: styIcn.height,
 		borderRadius: 100,
+		marginRight: styConst.padding,
 	},
 	messageUserName: {
 		fontSize: styConst.fontSize,

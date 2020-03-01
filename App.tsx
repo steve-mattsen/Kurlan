@@ -33,33 +33,33 @@ var personas = [
 
 var messages = [
 	{
-		key: "0",
+		key: 0,
 		persona: 0,
-		message: "Good morning. How are you doing today?",
+		text: "Good morning. How are you doing today?",
 	},{
-		key: "1",
+		key: 1,
 		persona: 1,
-		message: "I'm depressed and stressed.",
+		text: "I'm depressed and stressed.",
 	},{
-		key: "2",
+		key: 2,
 		persona: 0,
-		message: "Why's that?",
+		text: "Why's that?",
 	},{
-		key: "3",
+		key: 3,
 		persona: 3,
-		message: "I have to do like 10 major things today.",
+		text: "I have to do like 10 major things today.",
 	},{
-		key: "4",
+		key: 4,
 		persona: 2,
-		message: "There's so much to do that I just break down and don't do anything.",
+		text: "There's so much to do that I just break down and don't do anything.",
 	},{
-		key: "5",
+		key: 5,
 		persona: 4,
-		message: "I just want to have fun all day and not do work.",
+		text: "I just want to have fun all day and not do work.",
 	},{
-		key: "6",
+		key: 6,
 		persona: 5,
-		message: "Maybe I can just take out the trash and see how I feel.",
+		text: "Maybe I can just take out the trash and see how I feel.",
 	}
 ];
 
@@ -106,7 +106,8 @@ class MessageContainer extends Component {
 		return (
 			<FlatList style={styles.messageContainer} 
 				data={messages}
-				renderItem={({item}) => <Message persona={item.persona}>{item.message}</Message>}
+				renderItem={({item}) => <Message persona={item.persona}>{item.text}</Message>}
+				keyExtractor={(item) => item.key.toString()}
 				/>
 		);
 	}

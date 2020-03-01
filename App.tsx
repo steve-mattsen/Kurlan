@@ -120,9 +120,9 @@ class Message extends Component {
 			styleMix.push(styles.messageAssistant);
 		}
 		return (
-			<View style={[styles.message, styleMix]}>
-				<Image source={{uri: p.icon }} style={[styles.messageIcon, styleMix]} />
-				<View style={[styles.messageTextContainer, styleMix]}>
+			<View style={[styles.message]}>
+				<Image source={{uri: p.icon }} style={[styles.messageIcon]} />
+				<View style={[styles.messageTextContainer]}>
 					<Text style={[styles.messageUserName, styleMix]}>{p.name}</Text>
 					<Text style={[styles.messageText, styleMix]}>{this.props.children}</Text>
 				</View>

@@ -64,19 +64,40 @@ var messages = [
 	}
 ];
 
-var selectedPersona = 1;
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-		<StatusBar hidden={false} backgroundColor="#f00" translucent={true}/>
-		<SideBar />
-		<TopBar />
-		<MessageContainer />
-		<BottomBar />
-		<KeyboardSpacer />
-    </View>
-  );
+var app = null;
+export default class App extends Component {
+	constructor(props) {
+		super(props);
+		app = this;
+		this.state = Object.assign({}, {
+			channel: '#general',
+			personas: personas,
+			messages: messages,
+		});
+	}
+	addMessage(persona, message) {
+		this.setState((prev) => {
+			var nm = prev.messages.slice();
+			nm.push({
+				key: nm.length,
+				persona: persona,
+				text: message,
+			});
+			return { messages: nm }
+		});
+	}
+	render() {
+		return (
+			<View style={styles.container}>
+				<StatusBar hidden={false} backgroundColor="#f00" translucent={true}/>
+				<SideBar />
+				<TopBar channel={this.state.channel}/>
+				<MessageContainer messages={this.state.messages} personas={this.state.personas}/>
+				<BottomBar personas={this.state.personas}/>
+				<KeyboardSpacer />
+			</View>
+		);
+	}
 }
 
 class SideBar extends Component {
@@ -93,7 +114,7 @@ class TopBar extends Component {
 		return (
 			<View style={styles.topBar}>
 				<ImageBackground style={styIcn} imageStyle={styIcnImage} source={require('./assets/hamburger.png')}/>
-				<Text style={styles.channelTitle}>#general</Text>
+				<Text style={styles.channelTitle}>{this.props.channel}</Text>
 				<ImageBackground style={[styIcn, styIcnMid]} imageStyle={styIcnImage} source={require('./assets/star.png')}/>
 				<ImageBackground style={[styIcn, styIcnMid]} imageStyle={styIcnImage} source={require('./assets/search.png')}/>
 				<ImageBackground style={styIcn} imageStyle={styIcnImage} source={require('./assets/actionButton.png')}/>
@@ -106,7 +127,7 @@ class MessageContainer extends Component {
 	render() {
 		return (
 			<FlatList style={styles.messageContainer} 
-				data={messages}
+				data={this.props.messages}
 				renderItem={({item}) => <Message persona={item.persona}>{item.text}</Message>}
 				keyExtractor={(item) => item.key.toString()}
 				/>
@@ -123,7 +144,7 @@ class Message extends Component {
 		}
 		return (
 			<View style={[styles.message]}>
-				<Image source={{uri: p.icon }} style={[styles.messageIcon]} />
+				<Image source={p.icon} style={[styles.messageIcon]} />
 				<View style={[styles.messageTextContainer]}>
 					<Text style={[styles.messageUserName, styleMix]}>{p.name}</Text>
 					<Text style={[styles.messageText, styleMix]}>{this.props.children}</Text>
@@ -134,30 +155,50 @@ class Message extends Component {
 }
 
 class BottomBar extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			selectedPersona: 1,
+		}
+	}
+	selectPersona(persona) {
+		var current = this.state.selectedPersona;
+		current++;
+		if (current >= this.props.personas.length) {
+			current = 1;
+		}
+		this.setState((prev) => ({selectedPersona: current}));
+	}
+	handleSubmit(event) {
+		app.addMessage(this.state.selectedPersona, event.nativeEvent.text);
+		this.setState((prev) => ({
+			messageText: '',
+		}));
+		this.textInput.clear();
+	}
 	render() {
 		return (
 			<View style={styles.bottomBar}>
-				<PersonaSelect />
-				<TextInput style={styles.chatBox} placeholder="Type message here...."/>
+				<TouchableHighlight
+					onPress={() => this.selectPersona(this.props.persona)}
+					underlayColor="white"
+					style={{borderRadius: styConst.borderRadius}}
+				>
+					<Image style={styles.selectedPersonaIcon}
+						source={this.props.personas[this.state.selectedPersona].icon}
+					/>
+				</TouchableHighlight>
+				<TextInput
+					style={styles.chatBox}
+					ref={input => { this.textInput = input }}
+					placeholder="Type message here...."
+					onSubmitEditing={(e) => this.handleSubmit(e)}
+					blurOnSubmit={false}
+				/>
 				<ImageBackground style={styIcn} imageStyle={styIcnImage} source={require('./assets/upload.png')}/>
 			</View>
 		);
 	}
-}
-
-class PersonaSelect extends Component {
-	render() {
-		return (
-			<TouchableHighlight onPress={this.addMessage} >
-				<Image style={styles.selectedPersonaIcon}
-					source={{uri: personas[selectedPersona].icon}}
-					/>
-			</TouchableHighlight>
-		);
-	}
-	//<View style={styles.selectedPersona}>
-	//<Text style={styles.selectedPersonaUsername}> {personas[selectedPersona].name} </Text>
-	//<Text style={[styIcn, styles.selectedPersonaArrow]}> &#9660; </Text>
 }
 
 const styConst = {

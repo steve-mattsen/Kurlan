@@ -105,6 +105,9 @@ class BottomBar extends Component {
 		this.setState((prev) => ({selectedPersona: current}));
 	}
 	handleSubmit(event) {
+		if (event.nativeEvent.text == '') {
+			return false;
+		}
 		app.addMessage(this.state.selectedPersona, event.nativeEvent.text);
 		this.setState((prev) => ({
 			messageText: '',

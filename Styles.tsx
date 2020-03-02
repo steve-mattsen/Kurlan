@@ -88,7 +88,7 @@ export const messageContainer = {
 export const message = {
 	flexDirection: 'row',
 	padding: styConst.padding,
-	paddingVertical: (styConst.fontSize * 1.25 * 0.5),
+	paddingVertical: styConst.fontSize * 1.5 * .5,	//The goal is to have this to have exactly one line space between messages.
 };
 
 export const messageIcon = {

@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View,ScrollView, Picker, Image, FlatList, StatusBar,ImageBackground,TouchableHighlight, Platform} from 'react-native';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
-import {createStore} from 'redux';
 
 var personas = [
 	{
 		id: 0,
 		name: 'Assistant',
 		icon: require('./assets/personas/assistant.png'),
-		
 	},{
 		id: 1,
 		name: 'Guy',

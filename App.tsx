@@ -306,8 +306,12 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	messageAssistant: {
+		backgroundColor: styClr.mid,
+	},
+	messageAssistantText: {
 		fontStyle: 'italic',
 		fontWeight: '200',
+		color: "white",
 	},
 	bottomBar: {
 		flexDirection: 'row',

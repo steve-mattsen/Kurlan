@@ -74,15 +74,12 @@ class Message extends Component {
 	render() {
 		let p = this.props.persona;
 		var styleMix = [];
-		if (p.id == 0) {
-			styleMix.push(styles.messageAssistant);
-		}
 		return (
-			<View style={[styles.message]}>
-				<Image source={p.icon} style={[styles.messageIcon]} />
-				<View style={[styles.messageTextContainer]}>
-					<Text style={[styles.messageUserName, styleMix]}>{p.name}</Text>
-					<Text style={[styles.messageText, styleMix]}>{this.props.children}</Text>
+			<View style={p.id == 0 ? styles.messageAssistant : styles.message}>
+				<Image source={p.icon} style={styles.messageIcon} />
+				<View style={p.id == 0 ? styles.messageTextContainerAssistant : styles.messageTextContainer}>
+					<Text style={p.id == 0 ? styles.messageUserNameAssistant : styles.messageUserName}>{p.name}</Text>
+					<Text style={p.id == 0 ? styles.messageTextAssistant: styles.messageText}>{this.props.children}</Text>
 				</View>
 			</View>
 		);
@@ -148,9 +145,12 @@ const styConst = {
 
 const styClr = {
 	light: '#ccc',
+	lightMidLight: '#b8b8b8',
 	lightMid: '#999',
 	mid: '#666',
+	midDarkMid: '#484848',
 	darkMid: '#333',
+	darkMidDark: '#181818',
 	dark: '#000',
 };
 
@@ -218,6 +218,7 @@ const styles = StyleSheet.create({
 	message: {
 		flexDirection: 'row',
 		padding: styConst.padding,
+		paddingVertical: (styConst.fontSize * 1.25 * 0.5),
 	},
 	messageIcon: {
 		width: styIcn.width,
@@ -237,21 +238,37 @@ const styles = StyleSheet.create({
 		fontSize: styConst.fontSize,
 		paddingLeft: styConst.padding,
 		color: styClr.light,
-		//fontWeight: 'light',
 		flexWrap: 'wrap'
 	},
 	messageTextContainer: {
 		marginTop: styConst.padding * -0.4,
-		paddingBottom: styConst.padding,
 		flex: 1,
 	},
 	messageAssistant: {
-		backgroundColor: styClr.mid,
+		flexDirection: 'row',
+		paddingVertical: (styConst.fontSize * 1.25 * 0.5),
+		paddingHorizontal: styConst.padding,
+		backgroundColor: styClr.midDarkMid,
 	},
-	messageAssistantText: {
+	messageTextContainerAssistant: {
+		marginTop: styConst.padding * -0.4,
+		flex: 1,
+	},
+	messageUserNameAssistant: {
+		fontSize: styConst.fontSize,
+		paddingLeft: styConst.padding,
+		color: styClr.light,
+		fontWeight: 'bold',
+		flex: 1,
+	},
+	messageTextAssistant: {
+		flex: 1,
+		fontSize: styConst.fontSize,
+		paddingLeft: styConst.padding,
+		color: styClr.light,
+		flexWrap: 'wrap',
+		fontWeight: 'normal',
 		fontStyle: 'italic',
-		fontWeight: '200',
-		color: "white",
 	},
 	bottomBar: {
 		flexDirection: 'row',
@@ -265,8 +282,6 @@ const styles = StyleSheet.create({
 		padding: styConst.padding,
 	},
 	selectedPersonaIcon: {
-		//borderRadius: '100%',
-		//borderColor: styClr.light,
 		width: styIcn.width,
 		height: styIcn.height,
 		borderRadius: styIcn.borderRadius,

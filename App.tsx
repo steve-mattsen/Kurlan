@@ -8,7 +8,7 @@ export default class App extends Component {
 	constructor(props) {
 		super(props);
 		app = this;
-		this.state = require('./DefaultState.tsx').state;
+		this.state = require('./DefaultState.tsx');
 	}
 	addMessage(persona, message) {
 		this.setState((prev) => {

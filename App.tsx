@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View,ScrollView, Picker, Image, FlatList, StatusBar,ImageBackground,TouchableHighlight, Platform} from 'react-native';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
+var styles = StyleSheet.create(require('./Styles.tsx'));
 
 var app = null;
 export default class App extends Component {
@@ -48,11 +49,11 @@ class TopBar extends Component {
 	render() {
 		return (
 			<View style={styles.topBar}>
-				<ImageBackground style={styIcn} imageStyle={styIcnImage} source={require('./assets/hamburger.png')}/>
+				<ImageBackground style={styles.styIcn} imageStyle={styles.styIcnImage} source={require('./assets/hamburger.png')}/>
 				<Text style={styles.channelTitle}>{this.props.channel}</Text>
-				<ImageBackground style={[styIcn, styIcnMid]} imageStyle={styIcnImage} source={require('./assets/star.png')}/>
-				<ImageBackground style={[styIcn, styIcnMid]} imageStyle={styIcnImage} source={require('./assets/search.png')}/>
-				<ImageBackground style={styIcn} imageStyle={styIcnImage} source={require('./assets/actionButton.png')}/>
+				<ImageBackground style={[styles.styIcn, styles.styIcnMid]} imageStyle={styles.styIcnImage} source={require('./assets/star.png')}/>
+				<ImageBackground style={[styles.styIcn, styles.styIcnMid]} imageStyle={styles.styIcnImage} source={require('./assets/search.png')}/>
+				<ImageBackground style={styles.styIcn} imageStyle={styles.styIcnImage} source={require('./assets/actionButton.png')}/>
 			</View>
 		)
 	}
@@ -117,7 +118,7 @@ class BottomBar extends Component {
 				<TouchableHighlight
 					onPress={() => this.selectPersona(this.props.persona)}
 					underlayColor="white"
-					style={{borderRadius: styConst.borderRadius}}
+					style={styles.personaSelect}
 				>
 					<Image style={styles.selectedPersonaIcon}
 						source={this.props.personas[this.state.selectedPersona].icon}
@@ -130,181 +131,8 @@ class BottomBar extends Component {
 					onSubmitEditing={(e) => this.handleSubmit(e)}
 					blurOnSubmit={false}
 				/>
-				<ImageBackground style={styIcn} imageStyle={styIcnImage} source={require('./assets/upload.png')}/>
+				<ImageBackground style={styles.styIcn} imageStyle={styles.styIcnImage} source={require('./assets/upload.png')}/>
 			</View>
 		);
 	}
 }
-
-const styConst = {
-	fontSize: 16,
-	padding: 5,
-	borderRadius: 5,
-	statusBarHeight: Platform.OS === 'ios' ? 20 : StatusBar.currentHeight,
-}
-
-const styClr = {
-	light: '#ccc',
-	lightMidLight: '#b8b8b8',
-	lightMid: '#999',
-	mid: '#666',
-	midDarkMid: '#484848',
-	darkMid: '#333',
-	darkMidDark: '#181818',
-	dark: '#000',
-};
-
-const styIcn = {
-	width: 40,
-	height: 40,
-	backgroundColor: styClr.lightMid,
-	borderRadius: styConst.borderRadius,
-	borderWidth: 0,
-	borderColor: styClr.lightMid,
-};
-
-const styIcnMid = {
-	marginLeft: styConst.padding,
-};
-
-const styIcnImage = {
-	width: styIcn.width - styConst.padding * 2,
-	height: styIcn.height - styConst.padding * 2,
-	marginLeft: styConst.padding,
-	marginTop: styConst.padding,
-};
-
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		flexDirection: 'column',
-	},
-	sideBar: {
-		display: 'none',
-		flex: 1,
-		top: 0,
-		left: -200,
-		bottom: 0,
-		width: 200,
-		zIndex: 1,
-		backgroundColor: styClr.mid,
-		padding: styConst.padding,
-	},
-	topBar: {
-		backgroundColor: styClr.mid,
-		flexDirection: 'row-reverse',
-		padding: styConst.padding,
-		paddingTop: styConst.padding + styConst.statusBarHeight,
-	},
-	channelTitle: {
-		flex: 1,
-		fontSize: styConst.fontSize,
-		paddingHorizontal: styConst.padding,
-		paddingTop: styConst.padding,
-		fontWeight: 'bold',
-		color: styClr.light,
-	},
-	menuButton: {
-	},
-	searchButton: {
-		padding: 10,
-		marginLeft: styConst.padding,
-		marginRight: styConst.padding,
-	},
-	messageContainer: {
-		backgroundColor: styClr.darkMid,
-		flexDirection: 'column-reverse',
-	},
-	message: {
-		flexDirection: 'row',
-		padding: styConst.padding,
-		paddingVertical: (styConst.fontSize * 1.25 * 0.5),
-	},
-	messageIcon: {
-		width: styIcn.width,
-		height: styIcn.height,
-		borderRadius: 100,
-		marginRight: styConst.padding,
-	},
-	messageUserName: {
-		fontSize: styConst.fontSize,
-		paddingLeft: styConst.padding,
-		color: styClr.light,
-		fontWeight: 'bold',
-		flex: 1,
-	},
-	messageText: {
-		flex: 1,
-		fontSize: styConst.fontSize,
-		paddingLeft: styConst.padding,
-		color: styClr.light,
-		flexWrap: 'wrap'
-	},
-	messageTextContainer: {
-		marginTop: styConst.padding * -0.4,
-		flex: 1,
-	},
-	messageAssistant: {
-		flexDirection: 'row',
-		paddingVertical: (styConst.fontSize * 1.25 * 0.5),
-		paddingHorizontal: styConst.padding,
-		backgroundColor: styClr.midDarkMid,
-	},
-	messageTextContainerAssistant: {
-		marginTop: styConst.padding * -0.4,
-		flex: 1,
-	},
-	messageUserNameAssistant: {
-		fontSize: styConst.fontSize,
-		paddingLeft: styConst.padding,
-		color: styClr.light,
-		fontWeight: 'bold',
-		flex: 1,
-	},
-	messageTextAssistant: {
-		flex: 1,
-		fontSize: styConst.fontSize,
-		paddingLeft: styConst.padding,
-		color: styClr.light,
-		flexWrap: 'wrap',
-		fontWeight: 'normal',
-		fontStyle: 'italic',
-	},
-	bottomBar: {
-		flexDirection: 'row',
-		padding: styConst.padding,
-		backgroundColor: styClr.mid,
-	},
-	selectedPersona: {
-		flexDirection: 'row',
-		borderRadius: styConst.borderRadius,
-		backgroundColor: styClr.light,
-		padding: styConst.padding,
-	},
-	selectedPersonaIcon: {
-		width: styIcn.width,
-		height: styIcn.height,
-		borderRadius: styIcn.borderRadius,
-	},
-	selectedPersonaUsername: {
-		fontSize: styConst.fontSize,
-	},
-	selectedPersonaArrow: {
-		backgroundColor: 'transparent',
-	},
-	chatBox: {
-		flex: 1,
-		marginLeft: 10,
-		marginRight: 10,
-		padding: styConst.padding,
-		paddingBottom: 0,
-		paddingTop: 0,
-		fontSize: styConst.fontSize,
-		color: "white",
-	},
-	upload: {
-	},
-	send: {
-		
-	}
-});

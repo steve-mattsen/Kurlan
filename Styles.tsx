@@ -5,6 +5,7 @@ var styConst = {
 	padding: 5,
 	borderRadius: 5,
 	statusBarHeight: Platform.OS === 'ios' ? 20 : StatusBar.currentHeight,
+	messagePadding: (16 * 1.5 * .5),	//The goal is to have this to have exactly one line space between messages.
 }
 
 var styClr = {
@@ -41,6 +42,7 @@ export const styIcnImage = {
 export const container = {
 	flex: 1,
 	flexDirection: 'column',
+	backgroundColor: styClr.darkMid,
 };
 
 export const sideBar = {
@@ -88,7 +90,7 @@ export const messageContainer = {
 export const message = {
 	flexDirection: 'row',
 	padding: styConst.padding,
-	paddingVertical: styConst.fontSize * 1.5 * .5,	//The goal is to have this to have exactly one line space between messages.
+	paddingVertical: styConst.messagePadding,
 };
 
 export const messageIcon = {
@@ -121,7 +123,7 @@ export const messageTextContainer = {
 
 export const messageAssistant = {
 	flexDirection: 'row',
-	paddingVertical: (styConst.fontSize * 1.25 * 0.5),
+	paddingVertical: styConst.messagePadding,
 	paddingHorizontal: styConst.padding,
 	backgroundColor: styClr.midDarkMid,
 };
@@ -153,6 +155,8 @@ export const bottomBar = {
 	flexDirection: 'row',
 	padding: styConst.padding,
 	backgroundColor: styClr.mid,
+	marginTop: styConst.messagePadding,
+	paddingLeft: styConst.padding,
 };
 
 export const selectedPersona = {
@@ -178,7 +182,7 @@ export const selectedPersonaArrow = {
 
 export const chatBox = {
 	flex: 1,
-	marginLeft: 10,
+	marginLeft: styConst.padding,
 	marginRight: 10,
 	padding: styConst.padding,
 	paddingBottom: 0,

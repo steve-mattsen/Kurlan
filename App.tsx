@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View,ScrollView, Picker, Image, FlatList, StatusBar,ImageBackground,TouchableHighlight, Platform} from 'react-native';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
-var styles = StyleSheet.create(require('./Styles.tsx'));
+var s = StyleSheet.create(require('./Styles.tsx'));
 
 var app = null;
 export default class App extends Component {
@@ -24,7 +24,7 @@ export default class App extends Component {
 	}
 	render() {
 		return (
-			<View style={styles.container}>
+			<View style={s.container}>
 				<StatusBar hidden={false} backgroundColor="#f00" translucent={true}/>
 				<SideBar />
 				<TopBar channel={this.state.channel}/>
@@ -39,7 +39,7 @@ export default class App extends Component {
 class SideBar extends Component {
 	render() {
 		return (
-			<View style={styles.sideBar}>
+			<View style={s.sideBar}>
 			</View>
 		);
 	}
@@ -48,12 +48,12 @@ class SideBar extends Component {
 class TopBar extends Component {
 	render() {
 		return (
-			<View style={styles.topBar}>
-				<ImageBackground style={styles.styIcn} imageStyle={styles.styIcnImage} source={require('./assets/hamburger.png')}/>
-				<Text style={styles.channelTitle}>{this.props.channel}</Text>
-				<ImageBackground style={[styles.styIcn, styles.styIcnMid]} imageStyle={styles.styIcnImage} source={require('./assets/star.png')}/>
-				<ImageBackground style={[styles.styIcn, styles.styIcnMid]} imageStyle={styles.styIcnImage} source={require('./assets/search.png')}/>
-				<ImageBackground style={styles.styIcn} imageStyle={styles.styIcnImage} source={require('./assets/actionButton.png')}/>
+			<View style={s.topBar}>
+				<ImageBackground style={s.styIcn} imageStyle={s.styIcnImage} source={require('./assets/hamburger.png')}/>
+				<Text style={s.channelTitle}>{this.props.channel}</Text>
+				<ImageBackground style={[s.styIcn, s.styIcnMid]} imageStyle={s.styIcnImage} source={require('./assets/star.png')}/>
+				<ImageBackground style={[s.styIcn, s.styIcnMid]} imageStyle={s.styIcnImage} source={require('./assets/search.png')}/>
+				<ImageBackground style={s.styIcn} imageStyle={s.styIcnImage} source={require('./assets/actionButton.png')}/>
 			</View>
 		)
 	}
@@ -62,7 +62,7 @@ class TopBar extends Component {
 class MessageContainer extends Component {
 	render() {
 		return (
-			<FlatList style={styles.messageContainer} 
+			<FlatList style={s.messageContainer}
 				data={this.props.messages}
 				renderItem={({item}) => <Message persona={this.props.personas[item.persona]}>{item.text}</Message>}
 				keyExtractor={(item) => item.key.toString()}
@@ -76,11 +76,11 @@ class Message extends Component {
 		let p = this.props.persona;
 		var styleMix = [];
 		return (
-			<View style={p.id == 0 ? styles.messageAssistant : styles.message}>
-				<Image source={p.icon} style={styles.messageIcon} />
-				<View style={p.id == 0 ? styles.messageTextContainerAssistant : styles.messageTextContainer}>
-					<Text style={p.id == 0 ? styles.messageUserNameAssistant : styles.messageUserName}>{p.name}</Text>
-					<Text style={p.id == 0 ? styles.messageTextAssistant: styles.messageText}>{this.props.children}</Text>
+			<View style={p.id == 0 ? s.messageAssistant : s.message}>
+				<Image source={p.icon} style={s.messageIcon} />
+				<View style={p.id == 0 ? s.messageTextContainerAssistant : s.messageTextContainer}>
+					<Text style={p.id == 0 ? s.messageUserNameAssistant : s.messageUserName}>{p.name}</Text>
+					<Text style={p.id == 0 ? s.messageTextAssistant: s.messageText}>{this.props.children}</Text>
 				</View>
 			</View>
 		);
@@ -117,18 +117,18 @@ class BottomBar extends Component {
 	}
 	render() {
 		return (
-			<View style={styles.bottomBar}>
+			<View style={s.bottomBar}>
 				<TouchableHighlight
 					onPress={() => this.selectPersona(this.props.persona)}
 					underlayColor="white"
-					style={styles.personaSelect}
+					style={s.personaSelect}
 				>
-					<Image style={styles.selectedPersonaIcon}
+					<Image style={s.selectedPersonaIcon}
 						source={this.props.personas[this.state.selectedPersona].icon}
 					/>
 				</TouchableHighlight>
 				<TextInput
-					style={styles.chatBox}
+					style={s.chatBox}
 					ref={input => { this.textInput = input }}
 					placeholder="Type message here...."
 					onSubmitEditing={() => {
@@ -136,18 +136,18 @@ class BottomBar extends Component {
 					}}
 					blurOnSubmit={false}
 				/>
-				<ImageBackground style={[{display: 'none'}, styles.styIcn]} imageStyle={styles.styIcnImage} source={require('./assets/upload.png')}/>
+				<ImageBackground style={[{display: 'none'}, s.styIcn]} imageStyle={s.styIcnImage} source={require('./assets/upload.png')}/>
 				<TouchableHighlight
 					onPress={() => {
 						this.sendMessage();
 						this.textInput.focus();
 					}}
 					underlayColor="white"
-					style={styles.sendMessage}
+					style={s.sendMessage}
 				>
 					<ImageBackground
-						style={styles.styIcn}
-						imageStyle={styles.styIcnImage}
+						style={s.styIcn}
+						imageStyle={s.styIcnImage}
 						source={require('./assets/send.png')}
 					/>
 				</TouchableHighlight>

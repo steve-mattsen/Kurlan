@@ -25,7 +25,7 @@ export default class App extends Component {
 	render() {
 		return (
 			<View style={s.container}>
-				<StatusBar hidden={false} backgroundColor="#f00" translucent={true}/>
+				<StatusBar hidden={false} backgroundColor={s.colors.main[0]} translucent={true}/>
 				<SideBar />
 				<TopBar channel={this.state.channel}/>
 				<MessageContainer messages={this.state.messages} personas={this.state.personas}/>
@@ -119,7 +119,7 @@ class BottomBar extends Component {
 			<View style={s.botbar}>
 				<TouchableHighlight
 					onPress={() => this.selectPersona(this.props.persona)}
-					underlayColor="white"
+					underlayColor={s.colors.main[15]}
 					style={s.perSelect}
 				>
 					<Image style={s.perSelIcon}
@@ -141,7 +141,7 @@ class BottomBar extends Component {
 						this.sendMessage();
 						this.textInput.focus();
 					}}
-					underlayColor="white"
+					underlayColor={s.colors.main[15]}
 					style={s.senMessage}
 				>
 					<ImageBackground

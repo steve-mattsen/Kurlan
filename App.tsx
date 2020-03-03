@@ -102,14 +102,17 @@ class BottomBar extends Component {
 		}
 		this.setState((prev) => ({selectedPersona: current}));
 	}
-	handleSubmit(event) {
-		if (event.nativeEvent.text == '') {
+	sendMessage() {
+		var message = '';
+		if (Platform.OS == 'web') {
+			message = this.textInput._node.value;
+		} else {
+			message = this.textInput._lastNativeText;
+		}
+		if (message == '') {
 			return false;
 		}
-		app.addMessage(this.state.selectedPersona, event.nativeEvent.text);
-		this.setState((prev) => ({
-			messageText: '',
-		}));
+		app.addMessage(this.state.selectedPersona, message);
 		this.textInput.clear();
 	}
 	render() {
@@ -128,10 +131,26 @@ class BottomBar extends Component {
 					style={styles.chatBox}
 					ref={input => { this.textInput = input }}
 					placeholder="Type message here...."
-					onSubmitEditing={(e) => this.handleSubmit(e)}
+					onSubmitEditing={() => {
+						this.sendMessage()
+					}}
 					blurOnSubmit={false}
 				/>
-				<ImageBackground style={styles.styIcn} imageStyle={styles.styIcnImage} source={require('./assets/upload.png')}/>
+				<ImageBackground style={[{display: 'none'}, styles.styIcn]} imageStyle={styles.styIcnImage} source={require('./assets/upload.png')}/>
+				<TouchableHighlight
+					onPress={() => {
+						this.sendMessage();
+						this.textInput.focus();
+					}}
+					underlayColor="white"
+					style={styles.sendMessage}
+				>
+					<ImageBackground
+						style={styles.styIcn}
+						imageStyle={styles.styIcnImage}
+						source={require('./assets/send.png')}
+					/>
+				</TouchableHighlight>
 			</View>
 		);
 	}

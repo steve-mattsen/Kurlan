@@ -8,10 +8,10 @@ export var message = Object.assign({}, b.message, {
 });
 
 export var mesPersona = Object.assign({}, b.mesPersona, {
-	color: v.colors.main[6],
+	color: v.colors.main[12],
 });
 
 export var mesText = Object.assign({}, b.mesText, {
-	color: v.colors.main[6],
+	color: v.colors.main[12],
 	fontStyle: 'italic',
 });

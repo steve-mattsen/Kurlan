@@ -14,7 +14,7 @@ import {
 export var container = {
 	flex: 1,
 	flexDirection: 'column',
-	backgroundColor: colors.main[1],
+	backgroundColor: colors.main[2],
 };
 
 export var sidebar = {
@@ -30,7 +30,7 @@ export var sidebar = {
 };
 
 export var topbar = {
-	backgroundColor: colors.main[2],
+	backgroundColor: colors.main[6],
 	flexDirection: 'row-reverse',
 	padding: padding,
 	paddingTop: padding + staBarHeight,
@@ -40,7 +40,7 @@ export var chnTitle = Object.assign({}, text, {
 	flex: 1,
 	paddingHorizontal: padding,
 	paddingTop: padding,
-	fontWeight: 'bold',
+	color: colors.main[13],
 });
 
 export var menButton = Object.assign({}, icon, {
@@ -105,13 +105,13 @@ export var mesText = Object.assign({}, text, {
 export var botbar = {
 	flexDirection: 'row',
 	padding: padding,
-	backgroundColor: colors.main[2],
+	backgroundColor: colors.main[6],
 	marginTop: mesPadding,
 	paddingLeft: padding,
 };
 
 export var perSelect = {
-	borderRadius: borRadius
+	borderRadius: borRadius,
 }
 
 export var perSelIcon = Object.assign({}, icon, {
@@ -125,7 +125,7 @@ export var chtBox = {
 	paddingBottom: 0,
 	paddingTop: 0,
 	fontSize: fonSize,
-	color: colors.main[6],
+	color: colors.main[15],
 };
 
 export var uplButton = Object.assign({}, icon, {

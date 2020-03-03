@@ -21,12 +21,21 @@ export var colors = {	//colors.<palette>.<lightLevel>  # 0:dark 3:mid 6:light
 	],
 	main: [ //Grayscale
 		'#000000',
-		'#2b2b2b',
+		'#111111',
+		'#222222',
+		'#333333',
+		'#444444',
 		'#555555',
-		'#808080',
-		'#aaaaaa',
-		'#d5d5d5',
-		'#ffffff',
+		'#666666',
+		'#777777',
+		'#888888',
+		'#999999',
+		'#AAAAAA',
+		'#BBBBBB',
+		'#CCCCCC',
+		'#DDDDDD',
+		'#EEEEEE',
+		'#FFFFFF',
 	],
 	alt0: [	//Purple
 		'#200056',
@@ -52,7 +61,7 @@ export var colors = {	//colors.<palette>.<lightLevel>  # 0:dark 3:mid 6:light
 export var icon = {
 	width: 40,
 	height: 40,
-	backgroundColor: colors.main[4],
+	backgroundColor: colors.main[9],
 	borderRadius: borRadius,
 	borderWidth: 0,
 	borderColor: colors.main[4],
@@ -67,5 +76,5 @@ export var icoImage = {
 
 export var text = {
 	fontSize: fonSize,
-	color: colors.main[5],
+	color: colors.main[11],
 }

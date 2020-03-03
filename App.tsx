@@ -27,7 +27,10 @@ export default class App extends Component {
 			<View style={s.container}>
 				<StatusBar hidden={false} backgroundColor={s.colors.main[0]} translucent={true}/>
 				<SideBar />
-				<TopBar channel={this.state.channel}/>
+				<TopBar
+					currentChannel={this.state.currentChannel}
+					channels={this.state.channels}
+				/>
 				<MessageContainer messages={this.state.messages} personas={this.state.personas}/>
 				<BottomBar messages={this.state.messages} personas={this.state.personas}/>
 				<KeyboardSpacer />
@@ -46,11 +49,15 @@ class SideBar extends Component {
 }
 
 class TopBar extends Component {
+	constructor(props) {
+		super(props);
+		this.chan = this.props.channels[this.props.currentChannel];
+	}
 	render() {
 		return (
 			<View style={s.topbar}>
 				<ImageBackground style={s.menButton} imageStyle={s.menButImage} source={require('./assets/hamburger.png')}/>
-				<Text style={s.chnTitle}>{this.props.channel}</Text>
+				<Text style={s.chnTitle}>{this.chan.title}</Text>
 				<ImageBackground style={s.staButton} imageStyle={s.staButImage} source={require('./assets/star.png')}/>
 				<ImageBackground style={s.seaButton} imageStyle={s.seaButImage} source={require('./assets/search.png')}/>
 				<ImageBackground style={s.actButton} imageStyle={s.actButImage} source={require('./assets/actionButton.png')}/>

@@ -1,4 +1,3 @@
-export const channel = '#general';
 export const personas = [
 	{
 		id: 0,
@@ -57,3 +56,13 @@ export const messages = [
 		text: "Maybe I can just take out the trash and see how I feel.",
 	}
 ];
+
+export var channels = [
+	{
+		id: 0,
+		title: '#general',
+		description: 'Just talk about anything.',
+	}
+];
+
+export var currentChannel = 0;

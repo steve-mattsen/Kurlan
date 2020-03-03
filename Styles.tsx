@@ -30,7 +30,7 @@ export var actButImage = s.actButImage;
 export var mesContainer = s.mesContainer;
 export var message = s.message;
 export var mesIcon = s.mesIcon;
-export var mesTextContainer = s.mesTextContainer;
+export var mesTexContainer = s.mesTexContainer;
 export var mesPersona = s.mesPersona;
 export var mesText = s.mesText;
 export var botbar = s.botbar;
@@ -40,6 +40,7 @@ export var chtBox = s.chtBox;
 export var uplButton = s.uplButton;
 export var uplButImage = s.uplButImage;
 export var senMessage = s.senMessage;
+export var senMesButton = s.senMesButton;
 export var senMesButImage = s.senMesButImage;
 
 import * as a from './styles/Assistant.tsx'

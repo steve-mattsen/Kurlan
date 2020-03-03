@@ -1,199 +1,47 @@
-import {Platform,StatusBar} from 'react-native';
+import {StyleSheet, Platform,StatusBar} from 'react-native';
 
-var styConst = {
-	fontSize: 16,
-	padding: 5,
-	borderRadius: 5,
-	statusBarHeight: Platform.OS === 'ios' ? 20 : StatusBar.currentHeight,
-	messagePadding: (16 * 1.5 * .5),	//The goal is to have this to have exactly one line space between messages.
-}
+import * as v from './styles/Vars.tsx';
 
-var styClr = {
-	light: '#ccc',
-	lightMidLight: '#b8b8b8',
-	lightMid: '#999',
-	mid: '#666',
-	midDarkMid: '#484848',
-	darkMid: '#333',
-	darkMidDark: '#181818',
-	dark: '#000',
-};
+export var fonSize = v.fonSize;
+export var padding = v.padding;
+export var borRadius = v.borRadius;
+export var staBarHeight = v.staBarHeight;
+export var mesPadding = v.mesPadding;
+export var colors = v.colors;
+export var icon = v.icon;
+export var icoImage = v.icoImage;
+export var text = v.text;
 
-export const styIcn = {
-	width: 40,
-	height: 40,
-	backgroundColor: styClr.lightMid,
-	borderRadius: styConst.borderRadius,
-	borderWidth: 0,
-	borderColor: styClr.lightMid,
-};
+import * as ss from './styles/Base.tsx';
 
-export const styIcnMid = {
-	marginLeft: styConst.padding,
-};
+var s = StyleSheet.create(ss);
 
-export const styIcnImage = {
-	width: styIcn.width - styConst.padding * 2,
-	height: styIcn.height - styConst.padding * 2,
-	marginLeft: styConst.padding,
-	marginTop: styConst.padding,
-};
+export var container = s.container;
+export var topbar = s.topbar;
+export var chnTitle = s.chnTitle;
+export var menButton = s.menButton;
+export var menButImage = s.menButImage;
+export var staButton = s.staButton;
+export var staButImage = s.staButImage;
+export var seaButton = s.seaButton;
+export var seaButImage = s.seaButImage;
+export var actButton = s.actButton;
+export var actButImage = s.actButImage;
+export var mesContainer = s.mesContainer;
+export var message = s.message;
+export var mesIcon = s.mesIcon;
+export var mesTextContainer = s.mesTextContainer;
+export var mesPersona = s.mesPersona;
+export var mesText = s.mesText;
+export var botbar = s.botbar;
+export var perSelect = s.perSelect;
+export var perSelIcon = s.perSelIcon;
+export var chtBox = s.chtBox;
+export var uplButton = s.uplButton;
+export var uplButImage = s.uplButImage;
+export var senMessage = s.senMessage;
+export var senMesButImage = s.senMesButImage;
 
-export const container = {
-	flex: 1,
-	flexDirection: 'column',
-	backgroundColor: styClr.darkMid,
-};
+import * as a from './styles/Assistant.tsx'
 
-export const sideBar = {
-	display: 'none',
-	flex: 1,
-	top: 0,
-	left: -200,
-	bottom: 0,
-	width: 200,
-	zIndex: 1,
-	backgroundColor: styClr.mid,
-	padding: styConst.padding,
-};
-
-export const topBar = {
-	backgroundColor: styClr.mid,
-	flexDirection: 'row-reverse',
-	padding: styConst.padding,
-	paddingTop: styConst.padding + styConst.statusBarHeight,
-};
-
-export const channelTitle = {
-	flex: 1,
-	fontSize: styConst.fontSize,
-	paddingHorizontal: styConst.padding,
-	paddingTop: styConst.padding,
-	fontWeight: 'bold',
-	color: styClr.light,
-};
-
-export const menuButton = {
-};
-
-export const searchButton = {
-	padding: 10,
-	marginLeft: styConst.padding,
-	marginRight: styConst.padding,
-};
-
-export const messageContainer = {
-	backgroundColor: styClr.darkMid,
-	flexDirection: 'column-reverse',
-};
-
-export const message = {
-	flexDirection: 'row',
-	padding: styConst.padding,
-	paddingVertical: styConst.messagePadding,
-};
-
-export const messageIcon = {
-	width: styIcn.width,
-	height: styIcn.height,
-	borderRadius: 100,
-	marginRight: styConst.padding,
-};
-
-export const messageUserName = {
-	fontSize: styConst.fontSize,
-	paddingLeft: styConst.padding,
-	color: styClr.light,
-	fontWeight: 'bold',
-	flex: 1,
-};
-
-export const messageText = {
-	flex: 1,
-	fontSize: styConst.fontSize,
-	paddingLeft: styConst.padding,
-	color: styClr.light,
-	flexWrap: 'wrap'
-};
-
-export const messageTextContainer = {
-	marginTop: styConst.padding * -0.4,
-	flex: 1,
-};
-
-export const messageAssistant = {
-	flexDirection: 'row',
-	paddingVertical: styConst.messagePadding,
-	paddingHorizontal: styConst.padding,
-	backgroundColor: styClr.midDarkMid,
-};
-
-export const messageTextContainerAssistant = {
-	marginTop: styConst.padding * -0.4,
-	flex: 1,
-};
-
-export const messageUserNameAssistant = {
-	fontSize: styConst.fontSize,
-	paddingLeft: styConst.padding,
-	color: styClr.light,
-	fontWeight: 'bold',
-	flex: 1,
-};
-
-export const messageTextAssistant = {
-	flex: 1,
-	fontSize: styConst.fontSize,
-	paddingLeft: styConst.padding,
-	color: styClr.light,
-	flexWrap: 'wrap',
-	fontWeight: 'normal',
-	fontStyle: 'italic',
-};
-
-export const bottomBar = {
-	flexDirection: 'row',
-	padding: styConst.padding,
-	backgroundColor: styClr.mid,
-	marginTop: styConst.messagePadding,
-	paddingLeft: styConst.padding,
-};
-
-export const selectedPersona = {
-	flexDirection: 'row',
-	borderRadius: styConst.borderRadius,
-	backgroundColor: styClr.light,
-	padding: styConst.padding,
-};
-
-export const selectedPersonaIcon = {
-	width: styIcn.width,
-	height: styIcn.height,
-	borderRadius: styIcn.borderRadius,
-};
-
-export const selectedPersonaUsername = {
-	fontSize: styConst.fontSize,
-};
-
-export const selectedPersonaArrow = {
-	backgroundColor: 'transparent',
-};
-
-export const chatBox = {
-	flex: 1,
-	marginLeft: styConst.padding,
-	marginRight: 10,
-	padding: styConst.padding,
-	paddingBottom: 0,
-	paddingTop: 0,
-	fontSize: styConst.fontSize,
-	color: "white",
-};
-
-export const upload = {
-};
-
-export const send = {
-	
-};
+export var ast = StyleSheet.create(a);

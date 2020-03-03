@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View,ScrollView, Picker, Image, FlatList, StatusBar,ImageBackground,TouchableHighlight, Platform} from 'react-native';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
-var s = StyleSheet.create(require('./Styles.tsx'));
+var s = require('./Styles.tsx');
 
 var app = null;
 export default class App extends Component {
@@ -48,12 +48,12 @@ class SideBar extends Component {
 class TopBar extends Component {
 	render() {
 		return (
-			<View style={s.topBar}>
-				<ImageBackground style={s.styIcn} imageStyle={s.styIcnImage} source={require('./assets/hamburger.png')}/>
-				<Text style={s.channelTitle}>{this.props.channel}</Text>
-				<ImageBackground style={[s.styIcn, s.styIcnMid]} imageStyle={s.styIcnImage} source={require('./assets/star.png')}/>
-				<ImageBackground style={[s.styIcn, s.styIcnMid]} imageStyle={s.styIcnImage} source={require('./assets/search.png')}/>
-				<ImageBackground style={s.styIcn} imageStyle={s.styIcnImage} source={require('./assets/actionButton.png')}/>
+			<View style={s.topbar}>
+				<ImageBackground style={s.menButton} imageStyle={s.menButImage} source={require('./assets/hamburger.png')}/>
+				<Text style={s.chnTitle}>{this.props.channel}</Text>
+				<ImageBackground style={s.staButton} imageStyle={s.staButImage} source={require('./assets/star.png')}/>
+				<ImageBackground style={s.seaButton} imageStyle={s.seaButImage} source={require('./assets/search.png')}/>
+				<ImageBackground style={s.actButton} imageStyle={s.actButImage} source={require('./assets/actionButton.png')}/>
 			</View>
 		)
 	}
@@ -62,7 +62,7 @@ class TopBar extends Component {
 class MessageContainer extends Component {
 	render() {
 		return (
-			<FlatList style={s.messageContainer}
+			<FlatList style={s.mesContainer}
 				data={this.props.messages}
 				renderItem={({item}) => <Message persona={this.props.personas[item.persona]}>{item.text}</Message>}
 				keyExtractor={(item) => item.key.toString()}
@@ -74,13 +74,12 @@ class MessageContainer extends Component {
 class Message extends Component {
 	render() {
 		let p = this.props.persona;
-		var styleMix = [];
 		return (
-			<View style={p.id == 0 ? s.messageAssistant : s.message}>
-				<Image source={p.icon} style={s.messageIcon} />
-				<View style={p.id == 0 ? s.messageTextContainerAssistant : s.messageTextContainer}>
-					<Text style={p.id == 0 ? s.messageUserNameAssistant : s.messageUserName}>{p.name}</Text>
-					<Text style={p.id == 0 ? s.messageTextAssistant: s.messageText}>{this.props.children}</Text>
+			<View style={p.id == 0 ? s.ast.message : s.message}>
+				<Image source={p.icon} style={s.mesIcon} />
+				<View style={p.id == 0 ? s.mesTexContainer : s.mesTexContainer}>
+					<Text style={p.id == 0 ? s.ast.mesPersona : s.mesPersona}>{p.name}</Text>
+					<Text style={p.id == 0 ? s.ast.mesText : s.mesText}>{this.props.children}</Text>
 				</View>
 			</View>
 		);
@@ -117,18 +116,18 @@ class BottomBar extends Component {
 	}
 	render() {
 		return (
-			<View style={s.bottomBar}>
+			<View style={s.botbar}>
 				<TouchableHighlight
 					onPress={() => this.selectPersona(this.props.persona)}
 					underlayColor="white"
-					style={s.personaSelect}
+					style={s.perSelect}
 				>
-					<Image style={s.selectedPersonaIcon}
+					<Image style={s.perSelIcon}
 						source={this.props.personas[this.state.selectedPersona].icon}
 					/>
 				</TouchableHighlight>
 				<TextInput
-					style={s.chatBox}
+					style={s.chtBox}
 					ref={input => { this.textInput = input }}
 					placeholder="Type message here...."
 					onSubmitEditing={() => {
@@ -136,18 +135,18 @@ class BottomBar extends Component {
 					}}
 					blurOnSubmit={false}
 				/>
-				<ImageBackground style={[{display: 'none'}, s.styIcn]} imageStyle={s.styIcnImage} source={require('./assets/upload.png')}/>
+				<ImageBackground style={s.uplButton} imageStyle={s.uplButImage} source={require('./assets/upload.png')}/>
 				<TouchableHighlight
 					onPress={() => {
 						this.sendMessage();
 						this.textInput.focus();
 					}}
 					underlayColor="white"
-					style={s.sendMessage}
+					style={s.senMessage}
 				>
 					<ImageBackground
-						style={s.styIcn}
-						imageStyle={s.styIcnImage}
+						style={s.senMesButton}
+						imageStyle={s.senMesButImage}
 						source={require('./assets/send.png')}
 					/>
 				</TouchableHighlight>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TextInput, View,ScrollView, Picker, Image, FlatList, StatusBar,ImageBackground,TouchableHighlight, Platform} from 'react-native';
+import { StyleSheet, Text, TextInput, View,ScrollView, Picker, Image, FlatList, StatusBar,ImageBackground,TouchableHighlight, Platform, AsyncStorage } from 'react-native';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 var s = require('./Styles.tsx');
@@ -10,8 +10,31 @@ export default class App extends Component {
 		super(props);
 		app = this;
 		this.state = require('./DefaultState.tsx');
+		var stor = async () => {
+		  try {
+			var value = await AsyncStorage.getItem('@messages');
+			if (value !== null) {
+				this.setState((prev) => {
+					return {messages: JSON.parse(value)};
+				});
+			}
+		  } catch(e) {
+			console.log('error:');
+			console.log(e);
+		  }
+		};
+		stor();
 	}
 	addMessage(persona, message) {
+		var callback = async (state) => {
+			try {
+				await AsyncStorage.setItem('@messages', JSON.stringify(this.state.messages));
+			} catch (e) {
+				console.log(e);
+				// saving error
+			}
+			return state;
+		};
 		this.setState((prev) => {
 			var nm = prev.messages.slice();
 			nm.push({
@@ -20,7 +43,7 @@ export default class App extends Component {
 				text: message,
 			});
 			return { messages: nm }
-		});
+		},  callback);
 	}
 	render() {
 		return (

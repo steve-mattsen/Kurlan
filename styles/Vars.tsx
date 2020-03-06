@@ -1,6 +1,6 @@
 import {StyleSheet, Platform,StatusBar} from 'react-native';
 
-export var fonSize = 16;
+export var fonSize = 15;
 export var padding = 5;
 export var borRadius = 5;
 var staBarHeight = (Platform.OS === 'ios' ? 20 : StatusBar.currentHeight);

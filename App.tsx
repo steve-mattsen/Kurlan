@@ -38,7 +38,7 @@ export default class App extends Component {
 		this.setState((prev) => {
 			var nm = prev.messages.slice();
 			nm.push({
-				key: nm.length,
+				id: nm.length,
 				persona: persona,
 				text: message,
 			});
@@ -95,7 +95,7 @@ class MessageContainer extends Component {
 			<FlatList style={s.mesContainer}
 				data={this.props.messages}
 				renderItem={({item}) => <Message persona={this.props.personas[item.persona]}>{item.text}</Message>}
-				keyExtractor={(item) => item.key.toString()}
+				keyExtractor={(item) => item.id.toString()}
 				/>
 		);
 	}
